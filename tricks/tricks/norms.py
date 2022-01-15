@@ -127,8 +127,8 @@ def AcontainsB(A, listB):
 def appendNormLayer(net, args, dim_to_norm=None):
     if AcontainsB(args.type_trick, ['BatchNorm']):
         net.layers_norm.append(torch.nn.BatchNorm1d(net.dim_hidden if dim_to_norm is None else dim_to_norm))
-    elif AcontainsB(args.type_trick, ['PairNorm']):
-        net.layers_norm.append(pair_norm())
+    elif AcontainsB(args.type_trick, ['InstanceNorm']):
+        net.layers_norm.append(torch.nn.InstanceNorm1d(net.dim_hidden if dim_to_norm is None else dim_to_norm))
     elif AcontainsB(args.type_trick, ['NodeNorm']):
         net.layers_norm.append(node_norm(**vars(net.args)))
     elif AcontainsB(args.type_trick, ['MeanNorm']):
