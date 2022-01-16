@@ -6,6 +6,8 @@ import torch
 from options.base_options import BaseOptions
 from trainer import trainer
 from utils import set_seed, print_args, overwrite_with_yaml
+from torch.utils.tensorboard import SummaryWriter
+writer = SummaryWriter()
 
 
 def main(args):
@@ -29,7 +31,7 @@ def main(args):
         del trnr
         torch.cuda.empty_cache()
         gc.collect()
-
+        writer.flush()
         # record training data
         print('mean and std of test acc: {:.4f}±{:.4f}'.format(
             np.mean(list_test_acc), np.std(list_test_acc)))
