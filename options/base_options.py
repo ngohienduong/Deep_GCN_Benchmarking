@@ -16,7 +16,7 @@ class BaseOptions():
                                      'TEXAS', 'WISCONSIN', 'ACTOR', 'CORNELL'])
         # build up the common parameter
         parser.add_argument('--random_seed', type=int, default=100)
-        parser.add_argument('--N_exp', type=int, default=100)
+        parser.add_argument('--N_exp', type=int, default=10)
         parser.add_argument('--resume', action='store_true', default=False)
         parser.add_argument("--cuda", type=bool, default=True, required=False,
                             help="run in cuda mode")
