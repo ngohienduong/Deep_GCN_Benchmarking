@@ -3,10 +3,9 @@ import importlib
 import torch
 import torch.nn.functional as F
 from ogb.nodeproppred import Evaluator
-from torch.utils.tensorboard import SummaryWriter
 
 from Dataloader import load_data, load_ogbn
-from tricks import TricksComb, TricksCombSGC
+from tricks import TricksComb
 from utils import AcontainsB
 
 
@@ -156,5 +155,5 @@ class trainer(object):
             acc_val = evaluate(logits, self.data.y, self.data.val_mask)
             acc_test = evaluate(logits, self.data.y, self.data.test_mask)
             val_loss = self.loss_fn(logits[self.data.val_mask], self.data.y[self.data.val_mask])
-            return acc_train, acc_val, acc_test, val_los
+            return acc_train, acc_val, acc_test, val_loss
     
