@@ -3,6 +3,7 @@ import importlib
 import torch
 import torch.nn.functional as F
 from ogb.nodeproppred import Evaluator
+from torch.utils.tensorboard import SummaryWriter
 
 from Dataloader import load_data, load_ogbn
 from tricks import TricksComb, TricksCombSGC
@@ -80,7 +81,7 @@ class trainer(object):
                     bad_counter += 1
 
             # if epoch % 20 == 0:
-            if epoch % 20 == 0 or epoch == 1:
+            if epoch % 1 == 0 or epoch == 1:
                 log = 'Epoch: {:03d}, Train loss: {:.4f}, Val loss: {:.4f}, Test acc: {:.4f}'
                 print(log.format(epoch, loss_train, loss_val, acc_test))
             if bad_counter == patience:
@@ -155,4 +156,5 @@ class trainer(object):
             acc_val = evaluate(logits, self.data.y, self.data.val_mask)
             acc_test = evaluate(logits, self.data.y, self.data.test_mask)
             val_loss = self.loss_fn(logits[self.data.val_mask], self.data.y[self.data.val_mask])
-            return acc_train, acc_val, acc_test, val_loss
+            return acc_train, acc_val, acc_test, val_los
+    
