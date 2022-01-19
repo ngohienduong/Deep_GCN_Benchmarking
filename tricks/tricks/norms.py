@@ -131,6 +131,8 @@ def appendNormLayer(net, args, dim_to_norm=None):
         net.layers_norm.append(torch.nn.InstanceNorm1d(net.dim_hidden if dim_to_norm is None else dim_to_norm))
     elif AcontainsB(args.type_trick, ['LayerNorm']):
         net.layers_norm.append(torch.nn.LayerNorm(net.dim_hidden if dim_to_norm is None else dim_to_norm))
+    elif AcontainsB(args.type_trick, ['PairNorm']):
+        net.layers_norm.append(pair_norm())
     elif AcontainsB(args.type_trick, ['NodeNorm']):
         net.layers_norm.append(node_norm(**vars(net.args)))
     elif AcontainsB(args.type_trick, ['MeanNorm']):
