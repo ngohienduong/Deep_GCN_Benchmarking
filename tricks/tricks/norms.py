@@ -143,7 +143,7 @@ def appendNormLayer(net, args, dim_to_norm=None):
 
 
 def run_norm_if_any(net, x, ilayer):
-    if AcontainsB(net.args.type_trick, ['BatchNorm', 'PairNorm', 'NodeNorm', 'MeanNorm', 'GroupNorm', 'CombNorm']):
+    if AcontainsB(net.args.type_trick, ['BatchNorm', 'PairNorm', 'NodeNorm', 'MeanNorm', 'GroupNorm', 'CombNorm', 'InstanceNorm', 'LayerNorm']):
         return net.layers_norm[ilayer](x)
     else:
         return x
